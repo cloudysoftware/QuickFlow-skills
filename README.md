@@ -6,7 +6,7 @@ Claude Code and Cowork plugin for generating QuickFlow process flows by Cloudy S
 
 ### stepflow
 
-Generates complete V2 StepFlow JSON files ready for import into QuickFlow. Covers any business domain (HR, IT, finance, operations, procurement, etc.) with correct role type classification, optional action links with real URLs discovered via web search, and UK English text.
+Generates complete StepFlow JSON files ready for import into QuickFlow. Covers any business domain (HR, IT, finance, operations, procurement, etc.) with correct role type classification, optional action links with real URLs discovered via web search, and UK English text.
 
 ## Installation
 

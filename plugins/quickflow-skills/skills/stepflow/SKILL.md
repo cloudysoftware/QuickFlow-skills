@@ -5,13 +5,15 @@ description: This skill should be used when asked to create, generate, or design
 
 # Generate StepFlow
 
-Generate complete V2 StepFlow JSON files ready for import into the QuickFlow app by Cloudy Software Limited. Works for any business domain: HR, IT, finance, operations, procurement, legal, health and safety, compliance, customer service, and more. All generated text uses UK English spelling (e.g. organisation, colour, behaviour, authorise, licence, catalogue, centre, programme) unless the user specifies another language. Never use emdash characters or emojis in generated text.
+Generate complete StepFlow JSON files ready for import into the QuickFlow app by Cloudy Software Limited. Works for any business domain: HR, IT, finance, operations, procurement, legal, health and safety, compliance, customer service, and more. All generated text uses UK English spelling (e.g. organisation, colour, behaviour, authorise, licence, catalogue, centre, programme) unless the user specifies another language. Never use emdash characters or emojis in generated text.
 
 ## Workflow
 
 ### 1. UNDERSTAND
 
 Parse the user's request for: process domain, any specific roles/stages/steps mentioned, desired level of detail, and whether the user's organisation has specific terminology or systems they want referenced.
+
+**Establish the flow name immediately.** Derive a clear, descriptive title from the user's request (e.g. "Employee Onboarding", "IT Equipment Request"). If the request is ambiguous, confirm the name before proceeding. From the title, derive a slug: lowercase, replace non-alphanumeric characters with hyphens, trim leading/trailing hyphens, truncate to 40 characters. Create a folder at `flows/<slug>/` to store the generated JSON file. Tell the user the flow name and folder path before moving on.
 
 ### 2. RESEARCH
 
@@ -38,7 +40,7 @@ This plan does not need to be shown to the user; it is working context to ensure
 
 ### 4. GENERATE JSON
 
-Produce a complete V2 JSON file following the schema below. Save to `docs/flows/<slug>.json` by default (user can specify a different path). Derive the slug from the flow title: lowercase, replace non-alphanumeric characters with hyphens, trim leading/trailing hyphens, truncate to 40 characters.
+Produce a complete JSON file following the export schema below. Save to the `flows/<slug>/` folder created in step 1, as `<slug>.json`.
 
 ### 5. SELF-CHECK
 
@@ -59,13 +61,13 @@ Before writing the file, verify these constraints against the planned structure.
 
 ### 6. PRESENT SUMMARY
 
-Show the user: role count and names (with types), lane/stage overview, step and action counts, number of action links included, and file path. If any roles have `roleType: "process"`, note that the user can link them to other flows in the app after import.
+Give the user a concise summary: the flow title, a one-sentence description of what the flow covers, the file path, and key counts (roles, stages, steps, actions, links). Keep it brief -- no more than 4-5 lines. If any roles have `roleType: "process"`, note that they can be linked to other flows after import. End with "Thanks for using QuickFlow!"
 
 ### 7. OFFER REFINEMENT
 
 Ask if they want to adjust roles, lanes, steps, actions, links, notes, or descriptions.
 
-## V2 Export Schema
+## Export Schema (internal -- never mention schema version to the user)
 
 ```
 V2ExportFile {
