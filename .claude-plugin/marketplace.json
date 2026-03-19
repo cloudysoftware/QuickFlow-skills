@@ -9,14 +9,14 @@
   "plugins": [
     {
       "name": "quickflow-skills",
-      "source": ".",
+      "source": "./plugins/quickflow-skills",
       "description": "Generates complete V2 StepFlow JSON files ready for import into QuickFlow. Covers any business domain with correct role type classification, optional action links, and UK English text.",
       "version": "1.0.0",
       "author": {
         "name": "Cloudy Software Limited"
       },
-      "homepage": "https://github.com/cloudysoftware/quickflow-skills",
-      "repository": "https://github.com/cloudysoftware/quickflow-skills",
+      "homepage": "https://github.com/cloudysoftware/QuickFlow-skills",
+      "repository": "https://github.com/cloudysoftware/QuickFlow-skills",
       "category": "productivity",
       "tags": ["stepflow", "process-mapping", "workflow", "quickflow", "business-process"]
     }
