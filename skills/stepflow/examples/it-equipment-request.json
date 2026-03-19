@@ -1,0 +1,279 @@
+{
+  "meta": {
+    "schemaVersion": 2,
+    "appName": "QuickFlow",
+    "exportedAt": "2026-03-19T10:00:00.000Z"
+  },
+  "flowType": "stepflow",
+  "title": "IT Equipment Request",
+  "description": "End-to-end process for requesting, approving, and provisioning IT equipment for employees.",
+  "roles": [
+    {
+      "id": "role_a1b2c3d4",
+      "key": "emp",
+      "label": "Employee",
+      "description": "Submits the equipment request and receives the provisioned equipment.",
+      "roleType": "person",
+      "sortOrder": 0,
+      "style": { "bg": "#ffe0b3", "fg": "#8a5a00" }
+    },
+    {
+      "id": "role_e5f6a7b8",
+      "key": "mgr",
+      "label": "Line Manager",
+      "description": "Reviews and approves or rejects equipment requests for their team.",
+      "roleType": "person",
+      "sortOrder": 1,
+      "style": { "bg": "#d6eaff", "fg": "#004a80" }
+    },
+    {
+      "id": "role_c9d0e1f2",
+      "key": "it_team",
+      "label": "IT Team",
+      "description": "Provisions, configures, and deploys equipment to the employee.",
+      "roleType": "team",
+      "sortOrder": 2,
+      "style": { "bg": "#e8ffd6", "fg": "#346600" }
+    },
+    {
+      "id": "role_3a4b5c6d",
+      "key": "service_desk",
+      "label": "IT Service Desk",
+      "description": "Automated notifications and ticket tracking.",
+      "roleType": "system",
+      "sortOrder": 3,
+      "style": { "bg": "#ccf2f4", "fg": "#005f60" }
+    },
+    {
+      "id": "role_7e8f9a0b",
+      "key": "supplier",
+      "label": "Equipment Supplier",
+      "description": "External vendor that fulfils purchase orders for new equipment.",
+      "roleType": "organisation",
+      "sortOrder": 4,
+      "style": { "bg": "#f9d6ff", "fg": "#6b0080" }
+    },
+    {
+      "id": "role_4d5e6f7a",
+      "key": "email_notify",
+      "label": "Email Notification",
+      "description": "Automated email alerts sent at key process milestones.",
+      "roleType": "alert",
+      "sortOrder": 5,
+      "style": { "bg": "#fff4cc", "fg": "#7a5c00" }
+    }
+  ],
+  "content": {
+    "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "title": "IT Equipment Request",
+    "emails": {},
+    "miniMap": {
+      "title": "Process Overview",
+      "stages": [
+        { "label": "Request", "bg": "#ffe0b3" },
+        { "label": "Approval", "bg": "#d6eaff" },
+        { "label": "Provisioning", "bg": "#e8ffd6" }
+      ]
+    },
+    "lanes": [
+      {
+        "id": "lane_1a2b3c4d",
+        "title": "Request",
+        "laneNote": "",
+        "color": "#ffe0b3",
+        "steps": [
+          {
+            "id": "step_d1e2f3a4",
+            "title": "Submit Equipment Request",
+            "description": "Employee completes the equipment request form specifying the type of equipment needed, justification, and any urgency.",
+            "stepNote": "",
+            "roleAssignments": [
+              { "roleId": "role_a1b2c3d4", "note": "Initiates the request via the IT service portal." }
+            ],
+            "actions": [
+              {
+                "id": "action_f1a2b3c4",
+                "label": "Complete request form",
+                "notes": "Include equipment type, specification requirements, and business justification.",
+                "roleIds": ["role_a1b2c3d4"],
+                "link": {
+                  "label": "IT Service Portal",
+                  "url": "https://intranet.example.com/it/equipment-request"
+                }
+              }
+            ]
+          },
+          {
+            "id": "step_b5c6d7e8",
+            "title": "Ticket Created and Notification Sent",
+            "description": "The service desk system creates a ticket and sends an automatic notification to the line manager for approval.",
+            "stepNote": "",
+            "roleAssignments": [
+              { "roleId": "role_3a4b5c6d", "note": "Generates ticket and triggers notification." },
+              { "roleId": "role_4d5e6f7a", "note": "Sends approval request email to line manager." },
+              { "roleId": "role_e5f6a7b8", "note": "Receives approval request notification." }
+            ],
+            "actions": [
+              {
+                "id": "action_a2b3c4d5",
+                "label": "Generate support ticket",
+                "notes": "System auto-creates a ticket with request details and SLA target.",
+                "roleIds": ["role_3a4b5c6d"]
+              },
+              {
+                "id": "action_b3c4d5e6",
+                "label": "Send approval request email",
+                "notes": "Includes request summary, cost estimate, and a link for the manager to approve or reject.",
+                "roleIds": ["role_4d5e6f7a"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "lane_5e6f7a8b",
+        "title": "Approval",
+        "laneNote": "Approval authority may vary by equipment cost. Items over budget threshold require additional sign-off.",
+        "color": "#d6eaff",
+        "steps": [
+          {
+            "id": "step_a9b0c1d2",
+            "title": "Review Request",
+            "description": "Line manager reviews the equipment request, checking justification and budget availability.",
+            "stepNote": "",
+            "roleAssignments": [
+              { "roleId": "role_e5f6a7b8", "note": "Assesses need and budget impact." }
+            ],
+            "actions": [
+              {
+                "id": "action_e3f4a5b6",
+                "label": "Review and decide",
+                "notes": "Approve, reject with reason, or request more information from the employee.",
+                "roleIds": ["role_e5f6a7b8"]
+              }
+            ]
+          },
+          {
+            "id": "step_c7d8e9f0",
+            "title": "Notify Outcome",
+            "description": "System sends notification of the approval decision to the employee and, if approved, to the IT team for fulfilment.",
+            "stepNote": "Rejected requests include the manager's reason so the employee can resubmit if appropriate.",
+            "roleAssignments": [
+              { "roleId": "role_3a4b5c6d", "note": "Creates fulfilment task in the service desk system." },
+              { "roleId": "role_4d5e6f7a", "note": "Sends automated outcome notification emails." },
+              { "roleId": "role_a1b2c3d4", "note": "Receives outcome notification." },
+              { "roleId": "role_c9d0e1f2", "note": "Receives fulfilment request if approved." }
+            ],
+            "actions": [
+              {
+                "id": "action_a1b2c3d5",
+                "label": "Send approval notification",
+                "notes": "Notify employee of outcome.",
+                "roleIds": ["role_4d5e6f7a"]
+              },
+              {
+                "id": "action_d6e7f8a9",
+                "label": "Create fulfilment task",
+                "notes": "If approved, generate a fulfilment task assigned to IT Team.",
+                "roleIds": ["role_3a4b5c6d"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "lane_9c0d1e2f",
+        "title": "Provisioning",
+        "laneNote": "",
+        "color": "#e8ffd6",
+        "steps": [
+          {
+            "id": "step_f3a4b5c6",
+            "title": "Procure or Allocate Equipment",
+            "description": "IT team checks stock availability. If in stock, allocates from inventory. If not, raises a purchase order with the supplier.",
+            "stepNote": "Lead time for purchase orders is typically 5 to 10 working days.",
+            "roleAssignments": [
+              { "roleId": "role_c9d0e1f2", "note": "Checks inventory and procures if needed." },
+              { "roleId": "role_7e8f9a0b", "note": "Fulfils purchase order when stock is unavailable internally." }
+            ],
+            "actions": [
+              {
+                "id": "action_b0c1d2e3",
+                "label": "Check stock and procure",
+                "notes": "Allocate from inventory or raise purchase order with supplier. Refer to procurement policy for approval thresholds.",
+                "roleIds": ["role_c9d0e1f2"],
+                "link": {
+                  "label": "Crown Commercial Service Frameworks",
+                  "url": "https://www.crowncommercial.gov.uk/agreements"
+                }
+              }
+            ]
+          },
+          {
+            "id": "step_d4e5f6a7",
+            "title": "Configure Equipment",
+            "description": "IT team configures the equipment with required software, security settings, and network access.",
+            "stepNote": "",
+            "roleAssignments": [
+              { "roleId": "role_c9d0e1f2", "note": "Handles setup, imaging, and software installation." }
+            ],
+            "actions": [
+              {
+                "id": "action_f8a9b0c1",
+                "label": "Image and configure",
+                "notes": "Apply standard build, install role-specific software, join to domain.",
+                "roleIds": ["role_c9d0e1f2"],
+                "link": {
+                  "label": "Standard Build Guide",
+                  "url": "https://intranet.example.com/it/standard-build"
+                }
+              }
+            ]
+          },
+          {
+            "id": "step_e2f3a4b5",
+            "title": "Deploy to Employee",
+            "description": "IT team delivers the configured equipment to the employee and confirms handover.",
+            "stepNote": "",
+            "roleAssignments": [
+              { "roleId": "role_c9d0e1f2", "note": "Delivers and sets up at employee's workstation." },
+              { "roleId": "role_a1b2c3d4", "note": "Receives equipment and confirms receipt." }
+            ],
+            "actions": [
+              {
+                "id": "action_c6d7e8f9",
+                "label": "Deliver and confirm",
+                "notes": "Employee signs off on receipt. IT updates asset register.",
+                "roleIds": ["role_c9d0e1f2", "role_a1b2c3d4"]
+              }
+            ]
+          },
+          {
+            "id": "step_a8b9c0d1",
+            "title": "Close Ticket",
+            "description": "Service desk ticket is marked as resolved and closed.",
+            "stepNote": "",
+            "roleAssignments": [
+              { "roleId": "role_3a4b5c6d", "note": "Automatically closes ticket after confirmed delivery." },
+              { "roleId": "role_4d5e6f7a", "note": "Sends closure confirmation email to employee and manager." }
+            ],
+            "actions": [
+              {
+                "id": "action_e2f3a4b6",
+                "label": "Resolve and close ticket",
+                "notes": "Update ticket status to resolved, record the asset tag, and close.",
+                "roleIds": ["role_3a4b5c6d"]
+              },
+              {
+                "id": "action_c4d5e6f7",
+                "label": "Send closure confirmation",
+                "notes": "Confirm to employee and manager that the request is complete and equipment has been deployed.",
+                "roleIds": ["role_4d5e6f7a"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
