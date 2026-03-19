@@ -10,8 +10,8 @@
     {
       "name": "quickflow-skills",
       "source": "./plugins/quickflow-skills",
-      "description": "Generates complete V2 StepFlow JSON files ready for import into QuickFlow. Covers any business domain with correct role type classification, optional action links, and UK English text.",
-      "version": "1.0.0",
+      "description": "Generates complete StepFlow JSON files ready for import into QuickFlow. Covers any business domain with correct role type classification, optional action links, and UK English text.",
+      "version": "1.1.0",
       "author": {
         "name": "Cloudy Software Limited"
       },
